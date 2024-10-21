@@ -95,13 +95,16 @@ def is_float(str):
         return False
     
 def parse_equation(equation):
-    operators = ['+', '-', '*', '/', '^', ')']
+    operators = ['+', '-', '*', '/', '^']
     equation = equation + '/'
     equation = equation.replace(' ', '')
     stack = []
     rolling = 0
     last = 'num'
     for i in range(len(equation)):
+        print(rolling)
+        print(stack)
+
         if last == 'num' and (equation[i].isnumeric() or is_float(equation[i])):
             rolling += 1
         elif last == 'num' and equation[i] in operators:
@@ -112,17 +115,36 @@ def parse_equation(equation):
             rolling = 0
         elif last == 'operator' and (equation[i].isnumeric() or is_float(equation[i])):
             rolling += 1
+            last = 'num'
+
         elif last == 'operator' and equation[i] == '(':
             stack.append(equation[i])
-        elif equation[i] == '/':
+        elif last == 'num' and equation[i] == '(':
+            stack.append('*')
+            stack.append(equation[i])
+            last = 'operator'
+            rolling = 0
+
+        elif last == 'num' and equation[i] == ')':
             substr = equation[i-rolling:i]
             stack.append(substr)
-        elif last == 'operator' and equation[i] in operators and equation[i] != '(':
+            stack.append(equation[i])
+            last = 'operator'
+            rolling = 0
+        elif last == 'operator' and equation[i] == ')' and equation[i-1] != ')':
             return 1
-        else:
-            return 1
-    return stack
+        
+        elif equation[i] == '/':
+            substr = equation[i-rolling:i-1]
+            stack.append(substr)
 
+        elif last == 'operator' and equation[i] in operators and equation[i-1] != '(' and equation[i-1] != ')':
+            return 1
+        elif last == 'operator' and equation[i] in operators and equation[i-1] == ')':
+            stack.append(equation[i])
+    
+    stack.pop()
+    return stack
 
 
 def calculator(equation):
