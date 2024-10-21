@@ -93,12 +93,43 @@ def is_float(str):
         return True
     except ValueError or TypeError:
         return False
+    
+def parse_equation(equation):
+    operators = ['+', '-', '*', '/', '^', ')']
+    equation = equation + '/'
+    equation = equation.replace(' ', '')
+    stack = []
+    rolling = 0
+    last = 'num'
+    for i in range(len(equation)):
+        if last == 'num' and (equation[i].isnumeric() or is_float(equation[i])):
+            rolling += 1
+        elif last == 'num' and equation[i] in operators:
+            substr = equation[i-rolling:i]
+            stack.append(substr)
+            stack.append(equation[i])
+            last = 'operator'
+            rolling = 0
+        elif last == 'operator' and (equation[i].isnumeric() or is_float(equation[i])):
+            rolling += 1
+        elif last == 'operator' and equation[i] == '(':
+            stack.append(equation[i])
+        elif equation[i] == '/':
+            substr = equation[i-rolling:i]
+            stack.append(substr)
+        elif last == 'operator' and equation[i] in operators and equation[i] != '(':
+            return 1
+        else:
+            return 1
+    return stack
+
 
 
 def calculator(equation):
     try:
         equation = equation[0]
-        output_queue = shunting_yard_algorithm(equation.split())
+        equation = parse_equation(equation)
+        output_queue = shunting_yard_algorithm(equation)
         output = calculate(output_queue)
         return output
 
