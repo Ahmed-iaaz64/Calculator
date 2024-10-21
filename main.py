@@ -95,21 +95,21 @@ def is_float(str):
         return False
 
 
-try:
-    equation = sys.argv[1]
-    output_queue = shunting_yard_algorithm(equation.split())
-    output = calculate(output_queue)
-    print(output)
+def calculator(equation):
+    try:
+        equation = equation[0]
+        output_queue = shunting_yard_algorithm(equation.split())
+        output = calculate(output_queue)
+        return output
 
+    except IndexError:
+        print("""
+            
+            No arguments provided
+            To run type python main.py '1 + 1' or any other problem
 
-except IndexError:
-    print("""
-          
-          No arguments provided
-          To run type python main.py '1 + 1' or any other problem
-
-          '1 + 1' must be typed inside quotation marks
-          NOTE: There must be a space between any characters
-            eg: '3 + 4 * 2 / ( 1 - 5 ) ^ 2 ^ 3'
-          
-          """)
+            '1 + 1' must be typed inside quotation marks
+            NOTE: There must be a space between any characters
+                eg: '3 + 4 * 2 / ( 1 - 5 ) ^ 2 ^ 3'
+            
+            """)
