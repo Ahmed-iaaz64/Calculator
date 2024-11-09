@@ -1,19 +1,150 @@
+/* General styling */
 body {
   margin: 0;
-  font-family: sans-serif;
+  font-family: "Arial", sans-serif;
+  background-color: #121212; /* Dark background */
+  color: #f5f5f5; /* Light text for dark theme */
 }
 
 h1 {
-  font-size: 30px;
+  font-size: 36px;
   text-align: center;
+  margin-top: 20px;
+  color: #ffffff; /* White text for title */
 }
 
-form,
-input {
+/* Styling for the form and input fields */
+form {
   text-align: center;
   padding: 10px;
+  margin-bottom: 20px;
+  width: 80%;
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #333; /* Darker background for form */
+  border-radius: 10px;
 }
 
+input[type="text"] {
+  width: 100%; /* Make sure the input field takes up the full width of its container */
+  padding: 15px;
+  font-size: 24px;
+  border-radius: 10px;
+  border: 2px solid #555;
+  background-color: #222; /* Dark input field */
+  color: #fff; /* White text inside the input field */
+  margin-bottom: 20px;
+  box-sizing: border-box; /* Ensures padding is included in the width calculation */
+}
+
+input[type="submit"] {
+  background-color: #1e88e5; /* Blue color for submit button */
+  color: #fff;
+  border: none;
+  padding: 15px 30px;
+  font-size: 24px;
+  cursor: pointer;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+}
+
+input[type="submit"]:hover {
+  background-color: #1565c0; /* Darker blue when hovered */
+}
+
+input[type="submit"]:focus {
+  outline: none;
+}
+
+/* Styling for the result text */
 h4 {
   text-align: center;
+  font-size: 20px;
+  color: #bbb; /* Slightly lighter text for results */
+}
+
+/* Container styling */
+.container {
+  text-align: center;
+  display: flex;
+  justify-content: center; /* Center the whole calculator */
+  margin-top: 30px;
+}
+
+.calculator {
+  display: flex;
+  flex-direction: row; /* Place number grid and operators side by side */
+}
+
+.numbers {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 columns for numbers */
+  gap: 10px;
+  background-color: #333; /* Dark background for numbers */
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.operators {
+  display: grid;
+  grid-template-columns: 1fr; /* 1 column for operator buttons */
+  gap: 10px;
+  background-color: #444; /* Slightly lighter dark background for operators */
+  padding: 20px;
+  margin-left: 20px; /* Add space between numbers and operators */
+  border-radius: 10px;
+}
+
+/* Button styling */
+button {
+  background-color: #333;
+  color: #f5f5f5; /* Light text for buttons */
+  font-size: 24px;
+  border: 2px solid #555;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Button hover and active states */
+button:hover {
+  background-color: #444;
+  transform: scale(1.1); /* Slightly enlarge buttons on hover */
+}
+
+button:active {
+  background-color: #555;
+}
+
+button:focus {
+  outline: none;
+  border-color: #1e88e5; /* Highlight with blue border when focused */
+}
+
+/* Responsive design */
+@media (max-width: 600px) {
+  .numbers,
+  .operators {
+    grid-template-columns: repeat(
+      3,
+      1fr
+    ); /* Stack buttons on smaller screens */
+  }
+
+  input[type="text"] {
+    font-size: 20px; /* Adjust font size for smaller screens */
+  }
+
+  .calculator {
+    flex-direction: column; /* Stack the number grid and operator buttons vertically on smaller screens */
+  }
+
+  .operators {
+    margin-left: 0; /* Remove space between numbers and operators on smaller screens */
+  }
 }

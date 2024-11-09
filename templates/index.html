@@ -1,10 +1,43 @@
-{% extends 'base.html' %} {% block head %} {% endblock %} {% block body %}
+{% extends 'base.html' %} {% block head %}
+<script>
+  // Function to append the clicked value (number or operator) to the input field
+  function inputNum(value) {
+    // Get the current value of the input field
+    var equationField = document.getElementById("equation");
+    // Append the clicked value to the current input value
+    equationField.value += value;
+  }
+</script>
+{% endblock %} {% block body %}
 <h1>Calculator</h1>
 <div>
-  <form action="http://localhost:5000/" method="post">
+  <!-- Form for submitting the equation -->
+  <form action="http://localhost:5000/" method="post" id="equationform">
     <input type="text" name="equation" id="equation" />
     <input type="submit" value="=" />
   </form>
   <h4>= {{ results }}</h4>
+
+  <!-- Container for number and operator buttons -->
+  <div class="container">
+    <div class="numbers">
+      <button type="button" onclick="inputNum('9')">9</button>
+      <button type="button" onclick="inputNum('8')">8</button>
+      <button type="button" onclick="inputNum('7')">7</button>
+      <button type="button" onclick="inputNum('6')">6</button>
+      <button type="button" onclick="inputNum('5')">5</button>
+      <button type="button" onclick="inputNum('4')">4</button>
+      <button type="button" onclick="inputNum('3')">3</button>
+      <button type="button" onclick="inputNum('2')">2</button>
+      <button type="button" onclick="inputNum('1')">1</button>
+      <button type="button" onclick="inputNum('0')">0</button>
+    </div>
+    <div class="operators">
+      <button type="button" onclick="inputNum('*')">*</button>
+      <button type="button" onclick="inputNum('/')">/</button>
+      <button type="button" onclick="inputNum('+')">+</button>
+      <button type="button" onclick="inputNum('-')">-</button>
+    </div>
+  </div>
 </div>
 {% endblock %}

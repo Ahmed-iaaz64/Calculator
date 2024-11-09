@@ -1,5 +1,5 @@
 import sys
-# and (precedence(tokens[i]) > precedence(operator_stack[-1]) or precedence(tokens[i]) == precedence(operator_stack[len(operator_stack)-1])):
+
 
 def is_left_associative(operator):
     if operator == '+' or operator == '-' or operator == '*' or operator == '/':
