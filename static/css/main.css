@@ -2,7 +2,7 @@
 body {
   margin: 0;
   font-family: "Arial", sans-serif;
-  background-color: #121212; /* Dark background */
+  background-color: #232323; /* Dark background */
   color: #f5f5f5; /* Light text for dark theme */
 }
 
@@ -39,7 +39,7 @@ input[type="text"] {
 }
 
 input[type="submit"] {
-  background-color: #1e88e5; /* Blue color for submit button */
+  background-color: #ff5286; /* Blue color for submit button */
   color: #fff;
   border: none;
   padding: 15px 30px;
@@ -50,7 +50,7 @@ input[type="submit"] {
 }
 
 input[type="submit"]:hover {
-  background-color: #1565c0; /* Darker blue when hovered */
+  background-color: #ff7fa5; /* Darker blue when hovered */
 }
 
 input[type="submit"]:focus {
@@ -62,6 +62,7 @@ h4 {
   text-align: center;
   font-size: 20px;
   color: #bbb; /* Slightly lighter text for results */
+  background-color: #333;
 }
 
 /* Container styling */

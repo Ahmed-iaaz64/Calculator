@@ -1,14 +1,16 @@
 import sys
 
-
+# Function to determine if an operator is left associative
 def is_left_associative(operator):
-    if operator == '+' or operator == '-' or operator == '*' or operator == '/':
+    left_associative_operators = ['+', '-', '*', '/']
+    if operator in left_associative_operators:
         return True
-    # '^' is right associative
+    # '^' (exponent) is right associative
     else:
         return False
 
-# returns the precedence of an operator
+# Function that returns the precedence of an operator
+# Higher precedence operators will come first in the stack
 def precedence(operator):
     if operator == '+' or operator == '-':
         return 1
@@ -84,7 +86,6 @@ def calculate(output_queue):
 
     return(stack[-1])
 
-    return(output_queue)
 
 # check is string contains float
 def is_float(str):
