@@ -1,4 +1,5 @@
 import sys
+#testing
 
 # Function to determine if an operator is left associative
 def is_left_associative(operator):
